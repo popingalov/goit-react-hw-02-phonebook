@@ -19,25 +19,6 @@ class App extends Component {
     filter: '',
   };
 
-  test = () => {
-    for (let i = 0; i < 3; i += 1) {
-      console.log(this.state.value);
-
-      this.setState({ value: this.state.value + 1 });
-    }
-  };
-  /*   test = () => {
-    for (let i = 0; i < 3; i += 1) {
-      console.log(this.state.value);
-
-      this.setState(prevState => {
-        console.log(prevState.value);
-
-        return { value: prevState.value + 1 };
-      });
-    }
-  }; */
-
   addContact = (name, number) => {
     if (this.state.contacts.find(contact => name === contact.name)) {
       alert(name + ' is already in contacts');
@@ -58,10 +39,7 @@ class App extends Component {
   };
 
   handleChangeFilter = event => {
-    event.persist();
-    this.setState(() => {
-      return { filter: event.target.value };
-    });
+    this.setState({ filter: event.target.value });
   };
 
   filteredContact = () => {
@@ -72,7 +50,6 @@ class App extends Component {
   };
 
   deleteContact = contactId => {
-    console.log(contactId);
     this.setState(() => {
       return {
         contacts: this.state.contacts.filter(
@@ -90,7 +67,10 @@ class App extends Component {
 
         <h2>Contacts</h2>
         {this.state.contacts.length > 1 && (
-          <Filter handleChangeFilter={this.test} filter={this.state.filter} />
+          <Filter
+            handleChangeFilter={this.handleChangeFilter}
+            filter={this.state.filter}
+          />
         )}
         <ContactList
           contacts={this.filteredContact()}

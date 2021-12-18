@@ -9,7 +9,7 @@ const ContactList = ({ contacts, deleteContact }) => (
         <ContactListItem
           key={contact.id}
           el={contact}
-          delCont={() => deleteContact(contact.id)}
+          delCont={deleteContact}
         />
       ))}
     </ul>
@@ -19,6 +19,6 @@ const ContactList = ({ contacts, deleteContact }) => (
 export default ContactList;
 
 ContactList.propTypes = {
-  contacts: PropTypes.array.isRequired,
+  contacts: PropTypes.arrayOf(PropTypes.shape()),
   deleteContact: PropTypes.func.isRequired,
 };

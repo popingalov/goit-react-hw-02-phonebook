@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import styles from '../ContactListItem/ContactListItem.module.scss';
+import PropTypes from 'prop-types';
 
 class ContactForm extends Component {
   state = {
     name: '',
     number: '',
+  };
+  static propType = {
+    onAddContact: PropTypes.func.isRequired,
   };
 
   handleChange = e => {
