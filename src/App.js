@@ -15,8 +15,28 @@ class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
+    value: 0,
     filter: '',
   };
+
+  test = () => {
+    for (let i = 0; i < 3; i += 1) {
+      console.log(this.state.value);
+
+      this.setState({ value: this.state.value + 1 });
+    }
+  };
+  /*   test = () => {
+    for (let i = 0; i < 3; i += 1) {
+      console.log(this.state.value);
+
+      this.setState(prevState => {
+        console.log(prevState.value);
+
+        return { value: prevState.value + 1 };
+      });
+    }
+  }; */
 
   addContact = (name, number) => {
     if (this.state.contacts.find(contact => name === contact.name)) {
@@ -70,10 +90,7 @@ class App extends Component {
 
         <h2>Contacts</h2>
         {this.state.contacts.length > 1 && (
-          <Filter
-            handleChangeFilter={this.handleChangeFilter}
-            filter={this.state.filter}
-          />
+          <Filter handleChangeFilter={this.test} filter={this.state.filter} />
         )}
         <ContactList
           contacts={this.filteredContact()}
